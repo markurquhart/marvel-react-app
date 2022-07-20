@@ -29,6 +29,7 @@ const App = () => {
   }, [])
 
   return (
+
     <div>
       <h1 className="title">Marvel Characters</h1>
       {selectedCharacter ? (
@@ -38,6 +39,7 @@ const App = () => {
       )}
     </div>
   )
+
 }
 
 export default App
