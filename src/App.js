@@ -20,7 +20,6 @@ const App = () => {
 
   useEffect(() => {
     const TIMESTAMP = Date.now()
-    console.log(TIMESTAMP)
     const HASH = md5(`${TIMESTAMP} + ${process.env.REACT_APP_PRIVATE_KEY} + ${process.env.REACT_APP_PUBLIC_KEY}`)
     const getCharacters = async () => {
       const response = await axios.get(`${BASE_URL}/characters?ts=${TIMESTAMP}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${HASH}`)
