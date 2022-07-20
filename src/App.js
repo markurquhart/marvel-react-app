@@ -19,7 +19,7 @@ const App = () => {
 
   useEffect(() => {
     const getCharacters = async () => {
-      const response = await axios.get(`${BASE_URL}/characters?ts=${process.env.REACT_APP_TS}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${process.env.REACT_APP_HASH}`)
+      const response = await axios.get(`${BASE_URL}/characters?limit=100&ts=${process.env.REACT_APP_TS}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${process.env.REACT_APP_HASH}`)
       setCharacters(response.data.data.results)
     }
     getCharacters()
