@@ -1,6 +1,4 @@
-# Mark's Strava Based React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Mark's Marvel based React App
 
 ## H1 Placeholder
 
