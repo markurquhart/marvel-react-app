@@ -1,30 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import BasicExample from './components/Navigation';
+import './styles/app.css'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import md5 from 'md5-hash'
+import { BASE_URL } from './globals'
+import CharacterList from './components/CharacterList'
+import CharacterDetails from './components/CharacterDetails'
 
-function App() {
+const App = () => {
+  const [characters, setCharacters] = useState([])
+  const [selectedCharacter, setSelectedCharacter] = useState(null)
+
+  const selectCharacter = (id) => {
+    setSelectedCharacter(id)
+  }
+
+  const goBack = () => {
+    setSelectedCharacter(null)
+  }
+
+  useEffect(() => {
+    const TIMESTAMP = Date.now()
+    console.log(TIMESTAMP)
+    const HASH = md5(`${TIMESTAMP} + ${process.env.REACT_APP_PRIVATE_KEY} + ${process.env.REACT_APP_PUBLIC_KEY}`)
+    const getCharacters = async () => {
+      const response = await axios.get(`${BASE_URL}/characters?ts=${TIMESTAMP}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${HASH}`)
+      setCharacters(response.data.results)
+    }
+    getCharacters()
+  }, [])
+
   return (
-    <><BasicExample /><div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <br />
-        <Button variant="primary">Primary</Button>
-      </header>
-    </div></>
-  );
+    <div>
+      <h1 className="title">Marvel Characters</h1>
+      {selectedCharacter ? (
+        <CharacterDetails selectedCharacter={selectedCharacter} goBack={goBack}/>
+      ) : (
+        <CharacterList characters={characters} selectMovie={selectCharacter} />
+      )}
+    </div>
+  )
 }
 
-export default App;
+export default App
