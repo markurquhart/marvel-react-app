@@ -5,6 +5,7 @@ import ReactPaginate from 'react-paginate'
 import { BASE_URL } from './globals'
 import CharacterList from './components/CharacterList'
 import CharacterDetails from './components/CharacterDetails'
+import BannerImage from './components/BannerImage'
 
 const App = () => {
   const [characters, setCharacters] = useState([])
@@ -43,7 +44,7 @@ const App = () => {
   return (
 
     <div>
-      <h1 className="title">Marvel Characters</h1>
+      <BannerImage />
 
       {selectedCharacter ? (
         <CharacterDetails selectedCharacter={selectedCharacter} goBack={goBack}/> 

@@ -15,11 +15,11 @@ const CharacterList = (props) => {
             onError={e => { e.currentTarget.src = 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'; }}  />
             <Card.Body>
               <Card.Title>{character.name}</Card.Title>
-              <Card.Text>Appeared in: {character.comics.available} Comics</Card.Text>
-              <Card.Text>
-              {character.description === '' ?                 
+              <Card.Text>Appeared in: {character.comics.available} Comics &nbsp;&nbsp;&nbsp; {character.description === '' ?                 
                 <Badge bg="danger">Missing description</Badge> : 
-                <Badge bg="success">Description available</Badge>}
+                <Badge bg="success">Description available</Badge>}</Card.Text>
+              <Card.Text>
+              
               </Card.Text>
               <button onClick={() => props.selectCharacter(character.id)}>View Character</button>
             </Card.Body>

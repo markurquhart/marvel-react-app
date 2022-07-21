@@ -32,7 +32,9 @@ button:hover {
 }
 
 .card button {
-  border-radius: 0 0 4px 4px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  margin-top: 30px
 }
 
 .card img {
@@ -63,3 +65,14 @@ button:hover {
   color: white;
 }
 
+.card-title {
+  font-family: 'Bangers', cursive;
+  font-size: 48px;
+  color: white;
+  text-shadow: 2px 2px 0px #000000;
+}
+
+#banner img {
+  width: 100%;
+  margin-bottom: 40px;
+}
