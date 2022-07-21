@@ -8,7 +8,6 @@ const CharacterDetails = (props) => {
   useEffect(() => {
     const getDetails = async () => {
       const response = await axios.get(`${BASE_URL}/characters/${props.selectedCharacter}?ts=${process.env.REACT_APP_TS}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${process.env.REACT_APP_HASH}`)
-      console.log(response)
       setCharacterDetails(response.data.data.results[0])
     }
     getDetails()
