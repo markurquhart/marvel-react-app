@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { BASE_URL } from '../globals'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const CharacterDetails = (props) => {
   const [characterDetails, setCharacterDetails] = useState(null)
@@ -14,27 +17,34 @@ const CharacterDetails = (props) => {
     getDetails()
   }, [props.selectedCharacter])
 
- 
-
   
   return (
     <div>
-      {characterDetails ? (
-        <div className="details">
-          <div className="card">
-            <img src={[characterDetails.thumbnail.path] + '.jpg'} alt="poster" />
-            <h2>{characterDetails.name}</h2>
-            <p>{characterDetails.description}</p>
-            <p>Comics Appeared in: {characterDetails.comics.available}</p>
-            <p></p>      
+    {characterDetails ? (
+        <Container>
+          <Row>
+            <Col>
+            <div className="details">
+              <div className="card">
+                <img src={[characterDetails.thumbnail.path] + '.jpg'} alt="poster" />
+              </div>
           </div>
-          <button onClick={props.goBack}>Go Back</button>
-        </div>
+            </Col>
+            <Col>
+            <h2>{characterDetails.name}</h2>
+              <p>{characterDetails.description}</p>
+              <p>Comics Appeared in: {characterDetails.comics.available}</p>  
+              <button onClick={props.goBack}>Go Back</button>
+            </Col>
+          </Row>
+          
+        </Container>
       ) : (
-        <h3>Loading...</h3>
+        <h3>Jarvis is thinking...</h3>
       )}
-    </div>
+      </div>
   )
-}
+      }
+
 
 export default CharacterDetails

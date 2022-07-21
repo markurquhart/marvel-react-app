@@ -1,5 +1,5 @@
 import Card from 'react-bootstrap/Card';
-import Alert from 'react-bootstrap/Alert';
+import Badge from 'react-bootstrap/Badge';
 
 const CharacterList = (props) => {
 
@@ -17,9 +17,9 @@ const CharacterList = (props) => {
               <Card.Title>{character.name}</Card.Title>
               <Card.Text>Appeared in: {character.comics.available} Comics</Card.Text>
               <Card.Text>
-              {character.description === '' ? 
-                <Alert key={character.id} variant='danger'>No description</Alert> : 
-                <Alert key={character.id} variant='success'>Description available</Alert>}
+              {character.description === '' ?                 
+                <Badge bg="danger">Missing description</Badge> : 
+                <Badge bg="success">Description available</Badge>}
               </Card.Text>
               <button onClick={() => props.selectCharacter(character.id)}>View Character</button>
             </Card.Body>
