@@ -76,3 +76,15 @@ button:hover {
   width: 100%;
   margin-bottom: 40px;
 }
+
+.info {
+  padding-left: 40px;
+}
+
+.container {
+  min-height: 80vh;
+}
+
+.heroRow {
+  margin-top: 40px;
+}

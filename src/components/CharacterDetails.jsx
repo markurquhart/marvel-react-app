@@ -22,7 +22,7 @@ const CharacterDetails = (props) => {
     <div>
     {characterDetails ? (
         <Container>
-          <Row>
+          <Row className="heroRow">
             <Col>
             <div className="details">
               <div className="card">
@@ -30,7 +30,7 @@ const CharacterDetails = (props) => {
               </div>
           </div>
             </Col>
-            <Col>
+            <Col className="info">
             <h2>{characterDetails.name}</h2>
               <p>{characterDetails.description}</p>
               <p>Comics Appeared in: {characterDetails.comics.available}</p>  
