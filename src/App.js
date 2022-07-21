@@ -10,14 +10,6 @@ const App = () => {
   const [characters, setCharacters] = useState([])
   const [selectedCharacter, setSelectedCharacter] = useState(null)
 
-  const selectCharacter = (id) => {
-    setSelectedCharacter(id)
-  }
-
-  const goBack = () => {
-    setSelectedCharacter(null)
-  }
-
   useEffect(() => {
     const getCharacters = async () => {
       const response = await axios.get(`${BASE_URL}/characters?limit=100&ts=${process.env.REACT_APP_TS}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${process.env.REACT_APP_HASH}`)
@@ -26,8 +18,25 @@ const App = () => {
     getCharacters()
   }, [])
 
-  const handlePageClick = (data) => {
-    console.log(data.selected)
+  const handlePageClick = async (data) => {
+    let currentPage = data.selected
+    const newCharacters = await getMoreCharacters(currentPage)
+    setCharacters(newCharacters)
+  }
+
+  const getMoreCharacters = async (currentPage) => {
+    const response = await axios.get(`${BASE_URL}/characters?limit=100&&offset=${currentPage * 100}&ts=${process.env.REACT_APP_TS}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${process.env.REACT_APP_HASH}`)
+    const data = await response.data.data.results
+    console.log(data)
+    return data
+  }
+
+  const selectCharacter = (id) => {
+    setSelectedCharacter(id)
+  }
+
+  const goBack = () => {
+    setSelectedCharacter(null)
   }
 
   return (
@@ -37,7 +46,7 @@ const App = () => {
       <ReactPaginate 
       previousLabel={'Previous'}
       nextLabel={'Next'}
-      pageCount={17}
+      pageCount={16}
       onPageChange={handlePageClick}
       containerClassName={'pagination justify-content-center'}
       pageClassName={'page-item'}
