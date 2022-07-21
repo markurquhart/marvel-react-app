@@ -10,9 +10,13 @@ const CharacterDetails = (props) => {
       const response = await axios.get(`${BASE_URL}/characters/${props.selectedCharacter}?ts=${process.env.REACT_APP_TS}&apikey=${process.env.REACT_APP_PUBLIC_KEY}&hash=${process.env.REACT_APP_HASH}`)
       setCharacterDetails(response.data.data.results[0])
     }
+    
     getDetails()
   }, [props.selectedCharacter])
 
+ 
+
+  
   return (
     <div>
       {characterDetails ? (
@@ -21,7 +25,8 @@ const CharacterDetails = (props) => {
             <img src={[characterDetails.thumbnail.path] + '.jpg'} alt="poster" />
             <h2>{characterDetails.name}</h2>
             <p>{characterDetails.description}</p>
-            <p>Released: {characterDetails.release_date}</p>
+            <p>Comics Appeared in: {characterDetails.comics.available}</p>
+            <p></p>      
           </div>
           <button onClick={props.goBack}>Go Back</button>
         </div>
